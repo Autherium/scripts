@@ -123,7 +123,7 @@ local Tabs = {
 Window:SelectTab(1)
 
 -- Main Tab Features
-Tabs.MainTab:AutoDrill({
+Tabs.MainTab:Toggle({
     Title = "Auto Drill",
     Value = false,
     Callback = function()
@@ -131,14 +131,14 @@ Tabs.MainTab:AutoDrill({
     end
 })
 
- Tabs.MainTab:SellAll({
+ Tabs.MainTab:Button({
      Title = "Sell All",
      Callback = function()
          -- Function Here
      end
  })
  
- Tabs.MainTab:AutoSell({
+ Tabs.MainTab:Toggle({
     Title = "Auto Sell",
     Value = false,
     Callback = function()
@@ -146,7 +146,7 @@ Tabs.MainTab:AutoDrill({
     end
 })
 
-Tabs.MainTab:AutoRebirth({
+Tabs.MainTab:Toggle({
     Title = "Auto Rebirth",
     Value = false,
     Callback = function()
@@ -154,7 +154,7 @@ Tabs.MainTab:AutoRebirth({
     end
 })
 
-Tabs.MainTab:AutoCollectDrill({
+Tabs.MainTab:Toggle({
     Title = "Auto Collect Drill",
     Value = false,
     Callback = function()
@@ -162,7 +162,7 @@ Tabs.MainTab:AutoCollectDrill({
     end
 })
 
-Tabs.MainTab:AutoCollectStorsge({
+Tabs.MainTab:Toggle({
     Title = "Auto Collect Storage",
     Value = false,
     Callback = function()
@@ -171,14 +171,14 @@ Tabs.MainTab:AutoCollectStorsge({
 })
 
 -- Shop Tab Features
-Tabs.ShopTab:DrillShop({
+Tabs.ShopTab:Button({
     Title = "Drill Shop",
     Callback = function()
         -- Function Here
     end
 })
 
-Tabs.ShopTab:HandDrillShop({
+Tabs.ShopTab:Button({
     Title = "HandDrill Shop",
     Callback = function()
         -- Function Here
@@ -186,7 +186,7 @@ Tabs.ShopTab:HandDrillShop({
 })
 
 -- Utility Tab Features
-Tabs.UtilityTab:AntiAFK({
+Tabs.UtilityTab:Button({
     Title = "Anti AFK",
     Callback = function()
         -- Function Here
@@ -227,14 +227,14 @@ local function ListFiles()
     return files
 end
 
-Tabs.WindowTab:Section({ Title = "Window" })
+Tabs.ConfigTab:Section({ Title = "Window" })
 
 local themeValues = {}
 for name, _ in pairs(WindUI:GetThemes()) do
     table.insert(themeValues, name)
 end
 
-local themeDropdown = Tabs.WindowTab:Dropdown({
+local themeDropdown = Tabs.ConfigTab:Dropdown({
     Title = "Select Theme",
     Multi = false,
     AllowNone = false,
@@ -246,7 +246,7 @@ local themeDropdown = Tabs.WindowTab:Dropdown({
 })
 themeDropdown:Select(WindUI:GetCurrentTheme())
 
-local ToggleTransparency = Tabs.WindowTab:Toggle({
+local ToggleTransparency = Tabs.ConfigTab:Toggle({
     Title = "Toggle Window Transparency",
     Callback = function(e)
         Window:ToggleTransparency(e)
@@ -254,10 +254,10 @@ local ToggleTransparency = Tabs.WindowTab:Toggle({
     Value = WindUI:GetTransparency()
 })
 
-Tabs.WindowTab:Section({ Title = "Save" })
+Tabs.ConfigTab:Section({ Title = "Save" })
 
 local fileNameInput = ""
-Tabs.WindowTab:Input({
+Tabs.ConfigTab:Input({
     Title = "Write File Name",
     PlaceholderText = "Enter file name",
     Callback = function(text)
@@ -265,7 +265,7 @@ Tabs.WindowTab:Input({
     end
 })
 
-Tabs.WindowTab:Button({
+Tabs.ConfigTab:Button({
     Title = "Save File",
     Callback = function()
         if fileNameInput ~= "" then
@@ -274,12 +274,12 @@ Tabs.WindowTab:Button({
     end
 })
 
-Tabs.WindowTab:Section({ Title = "Load" })
+Tabs.ConfigTab:Section({ Title = "Load" })
 
 local filesDropdown
 local files = ListFiles()
 
-filesDropdown = Tabs.WindowTab:Dropdown({
+filesDropdown = Tabs.ConfigTab:Dropdown({
     Title = "Select File",
     Multi = false,
     AllowNone = true,
@@ -289,7 +289,7 @@ filesDropdown = Tabs.WindowTab:Dropdown({
     end
 })
 
-Tabs.WindowTab:Button({
+Tabs.ConfigTab:Button({
     Title = "Load File",
     Callback = function()
         if fileNameInput ~= "" then
@@ -310,7 +310,7 @@ Tabs.WindowTab:Button({
     end
 })
 
-Tabs.WindowTab:Button({
+Tabs.ConfigTab:Button({
     Title = "Overwrite File",
     Callback = function()
         if fileNameInput ~= "" then
@@ -319,7 +319,7 @@ Tabs.WindowTab:Button({
     end
 })
 
-Tabs.WindowTab:Button({
+Tabs.ConfigTab:Button({
     Title = "Refresh List",
     Callback = function()
         filesDropdown:Refresh(ListFiles())
@@ -405,7 +405,7 @@ local Response = game:GetService("HttpService"):JSONDecode(WindUI.Creator.Reques
 }).Body)
 
 if Response and Response.guild then
-    local DiscordInfo = Tabs.UtilityTab:Info({
+    local DiscordInfo = Tabs.UtilityTab:Paragraph({
         Title = Response.guild.name,
         Desc = 
             ' <font color="#52525b">•</font> Member Count : ' .. tostring(Response.approximate_member_count) .. 
@@ -415,8 +415,8 @@ if Response and Response.guild then
         ImageSize = 42,
     })
 
-    Tabs.UtilityTab:UpdateInfo({
-        Title = "Update Info",
+    Tabs.UtilityTab:Button({
+        Title = "Refresh",
         Image = "refresh-ccw",
         Callback = function()
             local UpdatedResponse = game:GetService("HttpService"):JSONDecode(WindUI.Creator.Request({
@@ -433,7 +433,7 @@ if Response and Response.guild then
         end
     })
 else
-    Tabs.UtilityTab:Error({
+    Tabs.UtilityTab:Paragraph({
         Title = "Error when receiving information about the Discord server",
         Desc = game:GetService("HttpService"):JSONEncode(Response),
         Image = "triangle-alert",
