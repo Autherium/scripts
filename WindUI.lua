@@ -20,9 +20,9 @@ end
 local Confirmed = false
 
 WindUI:Popup({
-    Title = "Autherium | ",
+    Title = "Autherium",
     Icon = "info",
-    Content = "Big Thank to " .. gradient("WindUI", Color3.fromHex("#00FF87"), Color3.fromHex("#60EFFF")) .. " Lib",
+    Content = "Big Thanks to " .. gradient("WindUI", Color3.fromHex("#00FF87"), Color3.fromHex("#60EFFF")) .. " Lib",
     Buttons = {
         {
             Title = "Cancel",
@@ -71,7 +71,7 @@ local Window = WindUI:CreateWindow({
     -- remove it below if you don't want to use the key system in your script.
     KeySystem = { -- <- keysystem enabled
         Key = { "UDG", "Autherium", "CahyaXyZp" },
-        Note = "Key System: \n\nThe Key is 'UDG' or 'Autherium",
+        Note = "The Key is 'UDG', 'Autherium' or 'CahyaXyZp'",
         -- Thumbnail = {
         --     Image = "rbxassetid://18220445082", -- rbxassetid only
         --     Title = "Thumbnail"
@@ -102,7 +102,7 @@ Window:EditOpenButton({
 
 local Tabs = {
     MainTab = Window:Tab({ Title = "Main Tab", Icon = "house" }),
-    OtherTab = Window:Tab({ Title = "Shop Tab", Icon = "shopping-cart" }),
+    OtherTab = Window:Tab({ Title = "Other Tab", Icon = "shopping-cart" }),
     UtilityTab = Window:Tab({ Title = "Utility Tab", Icon = "hammer" }),
     divider1 = Window:Divider(),
     --
@@ -124,8 +124,8 @@ Window:SelectTab(1)
     -- Variables
         -- Button, Toggle, Paragraph, Code, Input, Colorpicker, Slider, Keybind, Dropdown
 
-Tabs.MainTab:Toggle({
-    Title = "Example Toggle",
+Tabs.MainTab:Button({
+    Title = "Button",
     Desc = "Lorem ipsum dolor sit amet",
     Value = false,
     Callback = function()
@@ -147,8 +147,8 @@ Tabs.MainTab:Toggle({
      end
  })
  
- Tabs.MainTab:Toggle({
-    Title = "Toggle With Notify Background Image",
+ Tabs.MainTab:Button({
+    Title = "Button With Notify BackgroundImage",
     Desc = "Lorem ipsum dolor sit amet",
     Value = false,
     Callback = function()
@@ -174,20 +174,12 @@ Tabs.MainTab:Toggle({
 
 Tabs.MainTab:Slider({
     Title = "Example Slider",
+    Desc = "Lorem ipsum dolor sit amet",
     Value = {
         Min = 1,
         Max = 100,
         Default = 75,
     },
-    Callback = function()
-        -- Function Here
-    end
-})
-
-Tabs.MainTab:Toggle({
-    Title = "Example Toggle",
-    Desc = "Lorem ipsum dolor sit amet",
-    Value = false,
     Callback = function()
         -- Function Here
     end
@@ -241,14 +233,14 @@ local function ListFiles()
     return files
 end
 
-Tabs.ConfigTab:Section({ Title = "Configuration" })
+Tabs.ConfigTab:Section({ Title = "Window Theme" })
 
 local themeValues = {}
 for name, _ in pairs(WindUI:GetThemes()) do
     table.insert(themeValues, name)
 end
 
-local themeDropdown = Tabs.CreateThemeTab:Dropdown({
+local themeDropdown = Tabs.ConfigTab:Dropdown({
     Title = "Select Theme",
     Multi = false,
     AllowNone = false,
