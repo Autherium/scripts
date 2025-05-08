@@ -66,7 +66,7 @@ local Window = WindUI:CreateWindow({
         Anonymous = false -- <- or true
     },
     SideBarWidth = 200,
-    Background = "rbxassetid://13511292247", -- rbxassetid only
+    -- Background = "rbxassetid://13511292247", -- rbxassetid only
     HasOutline = true,
     -- remove it below if you don't want to use the key system in your script.
     KeySystem = { -- <- keysystem enabled
