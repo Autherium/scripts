@@ -26,7 +26,7 @@ WindUI:Popup({
     Buttons = {
         {
             Title = "Cancel",
-            -- Icon = "x",
+            Icon = "x",
             Callback = function() end,
             Variant = "Secondary", -- Primary, Secondary, Tertiary
         },
@@ -72,17 +72,17 @@ local Window = WindUI:CreateWindow({
     KeySystem = { -- <- keysystem enabled
         Key = { "UDG", "Autherium", "CahyaXyZp" },
         Note = "The Key is 'UDG', 'Autherium' or 'CahyaXyZp'",
-        Thumbnail = {
-             Image = "rbxassetid://18220445082", -- rbxassetid only
-             Title = "Thumbnail"
-         },
+        -- Thumbnail = {
+             -- Image = "rbxassetid://18220445082", -- rbxassetid only
+             -- Title = "Thumbnail"
+         -- },
         URL = "https://discord.gg/SbDtadDG5Y", -- remove this if the key is not obtained from the link.
         SaveKey = true, -- optional
     },
 })
 
 
-Window:SetBackgroundImage("rbxassetid://13511292247")
+-- Window:SetBackgroundImage("rbxassetid://13511292247")
 
 
 Window:EditOpenButton({
