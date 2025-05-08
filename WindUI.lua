@@ -55,7 +55,7 @@ local gameName = success and info.Name or "Unknown Game"
 local Window = WindUI:CreateWindow({
     Title = gameName,
     Icon = "door-open",
-    Author = "Autherium",
+    Author = "by real_autherium",
     Folder = "Auth",
     Size = UDim2.fromOffset(580, 460),
     Transparent = true,
@@ -66,23 +66,23 @@ local Window = WindUI:CreateWindow({
         Anonymous = false -- <- or true
     },
     SideBarWidth = 200,
-    --Background = "rbxassetid://13511292247", -- rbxassetid only
+    Background = "rbxassetid://13511292247", -- rbxassetid only
     HasOutline = true,
     -- remove it below if you don't want to use the key system in your script.
     KeySystem = { -- <- keysystem enabled
         Key = { "UDG", "Autherium", "CahyaXyZp" },
         Note = "The Key is 'UDG', 'Autherium' or 'CahyaXyZp'",
-        -- Thumbnail = {
-        --     Image = "rbxassetid://18220445082", -- rbxassetid only
-        --     Title = "Thumbnail"
-        -- },
+        Thumbnail = {
+             Image = "rbxassetid://18220445082", -- rbxassetid only
+             Title = "Thumbnail"
+         },
         URL = "https://discord.gg/SbDtadDG5Y", -- remove this if the key is not obtained from the link.
         SaveKey = true, -- optional
     },
 })
 
 
---Window:SetBackgroundImage("rbxassetid://13511292247")
+Window:SetBackgroundImage("rbxassetid://13511292247")
 
 
 Window:EditOpenButton({
@@ -186,7 +186,7 @@ Tabs.MainTab:Slider({
 })
 
 -- Other Tab Features
-Tabs.OtherTab:Button({
+Tabs.OtherTab:Dropdown({
     Title = "Example Button",
     Desc = "Lorem ipsum dolor sit amet",
     Callback = function()
